@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <DUT Name="ST_Axis" Id="{69702377-f47d-4f6d-9d61-f73f940376fb}">
+    <Declaration><![CDATA[TYPE ST_Axis :
+STRUCT
+
+(* Input *)
+Enable      AT %I*   :   BOOL := TRUE;
+EnablePos   AT %I*   :   BOOL := TRUE;
+EnableNeg   AT %I*   :   BOOL := TRUE;
+
+DoReset     AT %I*   :   BOOL;
+DoHalt      AT %I*   :   BOOL;
+
+SetVelo     AT %I*   :   LREAL := 10;
+SetAbsPos   AT %I*   :   LREAL;
+DoMoveAbs   AT %I*   :   BOOL;
+
+SetRelDist  AT %I*   :   LREAL;
+DoMoveRel   AT %I*   :   BOOL;
+
+(* Output *)
+Enabled     AT %Q*   :   BOOL;
+Error       AT %Q*   :   BOOL;
+LastError   AT %Q*   :   UDINT;
+Status      AT %Q*   :   ST_AxisStatus;
+
+(* Internal *)
+Axis                 :   AXIS_REF;
+State                :   E_AxisState;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

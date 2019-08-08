@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <GVL Name="IO" Id="{14137775-8c67-4782-8adc-990dfd5704ef}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	// *** Axis ***
+	Axis_1: ST_Axis;
+
+	// *** Sensor variables ***
+	relEnc AT %I* : UINT;
+	relPos AT %I* : LREAL;
+	
+	ai_1_3602 AT %I* : DINT; //Reading from ES3602
+	ai_2_3602 AT %I* : DINT; //Reading from ES3602
+	ai_3_3602 AT %I* : DINT; //Reading from LV
+	ai_4_3602 AT %I* : DINT;
+	
+	cap3 AT %I*: LREAL; // cap3 reading in um
+	cap4 AT %I*: LREAL; // cap4 reading in um
+	lv_d AT %I*: LREAL; // laser vibrometer um
+	
+	motorTemp AT %I* : LREAL; //actuator temp C
+	TK1 AT %I* : LREAL;
+	TK2 AT %I* : LREAL;
+	TK3 AT %I* : LREAL;
+	TK4 AT %I* : LREAL;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

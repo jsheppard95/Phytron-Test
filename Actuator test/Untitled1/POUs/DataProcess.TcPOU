@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <POU Name="DataProcess" Id="{01d5daee-455a-42d6-8664-7e9d83211cbf}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM DataProcess
+VAR
+	rawRTD AT %I* : INT;
+	
+	rawTK1 AT %I* : DINT;
+	rawTK2 AT %I* : DINT;
+	rawTK3 AT %I* : DINT;
+	rawTK4 AT %I* : DINT;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IO.relPos := UINT_TO_LREAL(IO.relEnc)*0.1; //um
+
+IO.cap3 := DINT_TO_LREAL(IO.ai_1_3602)*(10.0/2147483648)*(500.0/20.0); //um
+IO.cap4 := DINT_TO_LREAL(IO.ai_2_3602)*(10.0/2147483648)*(500.0/20.0); //um
+IO.lv_d := DINT_TO_LREAL(IO.ai_3_3602)*(10.0/2147483648)*100 ; //um (100um/V)
+
+IO.motorTemp := INT_TO_LREAL(rawRTD)*0.01; //deg C
+IO.TK1 := DINT_TO_LREAL(rawTK1)*0.001; 
+IO.TK2 := DINT_TO_LREAL(rawTK2)*0.001;
+IO.TK3 := DINT_TO_LREAL(rawTK3)*0.001;
+IO.TK4 := DINT_TO_LREAL(rawTK4)*0.001;
+]]></ST>
+    </Implementation>
+    <LineIds Name="DataProcess">
+      <LineId Id="10" Count="3" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="23" Count="3" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
